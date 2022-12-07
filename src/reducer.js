@@ -7,11 +7,13 @@ const initialState = {
     ThreeTransfer: false,
   },
   sortedBy: 'cheapest',
+  tickets: [],
+  isFetching: false,
 }
 const reducer = (state = initialState, action) => {
-  let { checkboxes, sortedBy } = state
+  let { checkboxes } = state
   switch (action.type) {
-    case 'TOGGLE CHECK':
+    case 'TOGGLE_CHECK':
       if (action.payload === 'All') {
         return state.checkboxes.All
           ? {
@@ -36,7 +38,7 @@ const reducer = (state = initialState, action) => {
             }
       }
       if (checkboxes.All && checkboxes[action.payload]) {
-        return { checkboxes: { ...checkboxes, All: false, [action.payload]: !checkboxes[action.payload] }, sortedBy }
+        return { ...state, checkboxes: { ...checkboxes, All: false, [action.payload]: !checkboxes[action.payload] } }
       }
       if (!checkboxes[action.payload]) {
         if (
@@ -58,9 +60,11 @@ const reducer = (state = initialState, action) => {
             },
           }
       }
-      return { checkboxes: { ...checkboxes, [action.payload]: !checkboxes[action.payload] }, sortedBy }
-    case 'TOGGLE SORT':
-      return { checkboxes, sortedBy: action.payload }
+      return { ...state, checkboxes: { ...checkboxes, [action.payload]: !checkboxes[action.payload] } }
+    case 'TOGGLE_SORT':
+      return { ...state, sortedBy: action.payload }
+    case 'TOGGLE_FETCH':
+      return { ...state, isFetching: !state.isFetching }
     default:
       return state
   }
