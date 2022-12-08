@@ -1,6 +1,10 @@
 .TicketList {
   width: 502px;
 
+  @media screen and (max-width: 783px) {
+    width: 200px;
+}
+
   .btn--more {
     border-radius: 5px;
     margin-bottom: 20px;
@@ -41,6 +45,7 @@
 
       & > span {
         color: #ffffff;
+
       }
     }
 
@@ -69,6 +74,10 @@
         line-height: 20px;
         letter-spacing: 0.5px;
         color: #4a4a4a;
+
+        @media screen and (max-width: 783px) {
+          font-size: 8px;
+      }
       }
     }
   }
@@ -83,7 +92,7 @@
       width: 100%;
       justify-content: center;
       margin-bottom: 20px;
-      height: 60px;
+      height: fit-content;
 
       & > div {
         margin: auto;
