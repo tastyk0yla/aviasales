@@ -1,6 +1,29 @@
 .TicketList {
   width: 502px;
 
+  .btn--more {
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 0;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: #2196f3;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    & > span {
+      margin: auto;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+  }
+
   & > .tabs {
     display: flex;
     width: 100%;
@@ -55,6 +78,24 @@
     margin: 0;
     padding: 0;
 
+    & > .spinner {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 20px;
+      height: 60px;
+
+      & > div {
+        margin: auto;
+      }
+      
+      & > span {
+        text-align: center;
+        margin: auto;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
     & > button {
       border: 0;
       display: flex;

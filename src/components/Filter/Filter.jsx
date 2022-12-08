@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import classes from './Filter.module.scss'
-import * as actions from '../../actions'
+import * as actions from '../../redux/actions'
 
 const Filter = ({ checkboxes, toggleCheck }) => {
   return (
@@ -88,8 +88,8 @@ const mapStateToProps = (state) => {
     checkboxes: state.checkboxes,
   }
 }
-const mapDispatchToPorps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   const { toggleCheck, toggleSort } = bindActionCreators(actions, dispatch)
   return { toggleCheck, toggleSort }
 }
-export default connect(mapStateToProps, mapDispatchToPorps)(Filter)
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)

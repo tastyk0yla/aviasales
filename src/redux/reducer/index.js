@@ -1,20 +1,24 @@
 const initialState = {
   checkboxes: {
-    All: false,
-    WithoutTransfer: false,
-    OneTransfer: false,
-    TwoTransfer: false,
-    ThreeTransfer: false,
+    All: true,
+    WithoutTransfer: true,
+    OneTransfer: true,
+    TwoTransfer: true,
+    ThreeTransfer: true,
   },
   sortedBy: 'cheapest',
   tickets: [],
+  error: null,
+  isError: false,
   isFetching: false,
+  totalTicketsOnPage: 5,
 }
 const reducer = (state = initialState, action) => {
+  const { type, payload } = action
   let { checkboxes } = state
-  switch (action.type) {
+  switch (type) {
     case 'TOGGLE_CHECK':
-      if (action.payload === 'All') {
+      if (payload === 'All') {
         return state.checkboxes.All
           ? {
               ...state,
@@ -37,13 +41,13 @@ const reducer = (state = initialState, action) => {
               },
             }
       }
-      if (checkboxes.All && checkboxes[action.payload]) {
-        return { ...state, checkboxes: { ...checkboxes, All: false, [action.payload]: !checkboxes[action.payload] } }
+      if (checkboxes.All && checkboxes[payload]) {
+        return { ...state, checkboxes: { ...checkboxes, All: false, [payload]: !checkboxes[payload] } }
       }
-      if (!checkboxes[action.payload]) {
+      if (!checkboxes[payload]) {
         if (
           Object.entries(checkboxes).reduce((acc, item) => {
-            if (item[0] !== 'All' && item[0] !== action.payload) {
+            if (item[0] !== 'All' && item[0] !== payload) {
               if (item[1]) return ++acc
             }
             return acc
@@ -60,11 +64,17 @@ const reducer = (state = initialState, action) => {
             },
           }
       }
-      return { ...state, checkboxes: { ...checkboxes, [action.payload]: !checkboxes[action.payload] } }
+      return { ...state, checkboxes: { ...checkboxes, [payload]: !checkboxes[payload] } }
     case 'TOGGLE_SORT':
-      return { ...state, sortedBy: action.payload }
+      return { ...state, sortedBy: payload }
     case 'TOGGLE_FETCH':
-      return { ...state, isFetching: !state.isFetching }
+      return payload === 'Start' ? { ...state, isFetching: true } : { ...state, isFetching: false, isError: false }
+    case 'PUSH_TICKETS':
+      return { ...state, tickets: payload }
+    case 'FETCH_ERROR':
+      return { ...state, isError: true, error: payload }
+    case 'INCREASE_TICKETS':
+      return { ...state, totalTicketsOnPage: state.totalTicketsOnPage + 5 }
     default:
       return state
   }
