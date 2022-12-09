@@ -11,4 +11,3 @@ ROOT.render(
     <App />
   </Provider>
 )
-
