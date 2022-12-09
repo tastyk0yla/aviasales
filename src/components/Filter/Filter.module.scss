@@ -9,11 +9,10 @@
   align-items: center;
   box-sizing: border-box;
 
-  
   @media screen and (max-width: 783px) {
     width: 132px;
     height: 262px;
-}
+  }
 
   & > span {
     font-weight: 600;
@@ -28,7 +27,7 @@
 
     @media screen and (max-width: 783px) {
       padding: 20px 10px 10px 10px;
-  }
+    }
   }
 
   & > ul {
@@ -53,8 +52,8 @@
 
         @media screen and (max-width: 783px) {
           padding: 10px;
-      }
-        
+        }
+
         &:hover {
           background-color: #f1fcff;
           cursor: pointer;
@@ -85,7 +84,7 @@
           @media screen and (max-width: 783px) {
             font-size: 11px;
             padding-left: 5px;
-        }
+          }
         }
       }
     }
