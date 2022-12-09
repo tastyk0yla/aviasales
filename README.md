@@ -1,2 +1,2 @@
 
-https://aviasales-swart.vercel.app/
+https://aviasales-tastyk0yla.vercel.app/
