@@ -12,4 +12,3 @@ ROOT.render(
   </Provider>
 )
 
-// const { toggleCheck, toggleSort } = bindActionCreators(actions, dispatch)
